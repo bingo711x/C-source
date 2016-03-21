@@ -1,2 +1,2 @@
 # C-source
-this folder is some source file
+this Reposity is some Algorithm impletement by C
