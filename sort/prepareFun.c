@@ -12,7 +12,10 @@ void printArray(int *a,int len)
 
 void swap(int *a,int *b)
 {
-  *a ^= *b;
-  *b ^= *a;
-  *a ^= *b;
+  if(*a != *b)
+    {
+      *a ^= *b;
+      *b ^= *a;
+      *a ^= *b;
+    }
 }
