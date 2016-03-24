@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "prepareFun.h"
 
 void printArray(int *a,int len)

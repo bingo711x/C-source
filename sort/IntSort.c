@@ -57,25 +57,41 @@ void SelectSort(int a[],int len)
 	swap(a+i,a+minIndex);
     }
 }
-void buildHeap(int a[],int i)
+
+//maintain a maxheap structure
+void buildHeap(int a[],int i,int len)
 {
-  if(a[i] < a[2*i+1] || a[i] < a[2*i+2])
+  int left = 2*i+1,right = 2*i+2;
+  int maxIndex = i;
+  
+  if(right < len && a[right] > a[maxIndex])
     {
-      if(a[i] < a[2*i+1])
-	{
-	  swap(a+i,a+2*i+1);
-	}
-      else
-	{
-	  swap(a+i,a+2*i+2);
-	}
+     	maxIndex = right;
     }
-  buildHeap(a,2*i+1);
-  buildHeap(a,2*i+2);
+  if(left < len && a[left] > a[maxIndex)
+    {
+    	maxIndex = left;
+    }
+
+  if(maxIndex != i)
+    {
+      swap(a+i,a+maxIndex);
+      buildHeap(a,maxIndex,len);
+    }
 }
+
 void HeapSort(int a[],int len)
 {
-  
+  int i;
+  for(i = (len - 1)/2;i >= 0;i--)
+    {
+      buildHeap(a,i,len);
+    }
+  for(i = len-1;i > 0;i--)
+    {
+      swap(a,a+i);
+      buildHeap(a,0,i);
+    }
 }
 
 
