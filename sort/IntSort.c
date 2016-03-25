@@ -8,10 +8,17 @@
  *
  */
 #include <stdio.h>
+#include <malloc.h>
+
 #include "prepareFun.h"
 
 void BubbleSort(int a[],int len)
 {
+  if(a == NULL && len == 0)
+    {
+      return;
+    }
+
   int i,j;
   for(i = 0; i < len-1; i++)
     {
@@ -27,6 +34,11 @@ void BubbleSort(int a[],int len)
 
 void InsertSort(int a[],int len)
 {
+  if(a == NULL && len == 0)
+    {
+      return;
+    }
+
   int i,j;
 
   for(i = 1;i < len; i++)
@@ -40,6 +52,11 @@ void InsertSort(int a[],int len)
 
 void SelectSort(int a[],int len)
 {
+  if(a == NULL && len == 0)
+    {
+      return;
+    }
+
   int i,j;
   int minIndex;
 
@@ -82,6 +99,11 @@ void buildHeap(int a[],int i,int len)
 
 void HeapSort(int a[],int len)
 {
+  if(a == NULL && len == 0)
+    {
+      return;
+    }
+
   int i;
   for(i = (len - 1)/2;i >= 0;i--)
     {
@@ -97,6 +119,11 @@ void HeapSort(int a[],int len)
 
 void QuickSort(int a[],int start,int end)
 {
+  if(a == NULL && end <= start)
+    {
+      return;
+    }
+
   int i = start,j = end;
   int status = a[i];
 
@@ -123,3 +150,67 @@ void QuickSort(int a[],int start,int end)
       QuickSort(a,start,i - 1);
       QuickSort(a,i + 1,end);
  }
+
+void mergeRows(int a[],int start,int middle,int end)
+{
+  int k = 0;
+  int i = start,j = middle + 1;
+  int length = end - start +1;
+
+  //printf("\nlength:%d\n",length);
+
+  int *ptmp = (int *)malloc((end - start + 1)*sizeof(int));
+  
+  while(i <= middle && j <= end)
+    {
+      if(a[i] < a[j])
+	{
+	  *(ptmp + k) = a[i];
+	  k++;
+	  i++;
+	}
+      else
+	{
+	  *(ptmp + k) = a[j];
+	  k++;
+	  j++;
+	}
+    }
+  //printf("start:%d\n",start);
+  //printf("i:%d,middle:%d\n",i,middle);
+  //printf("j:%d,end:%d\n",j,end);
+  //printf("k:%d,length:%d\n",k,length);
+  //printArray(ptmp,length);
+   
+  while(i <= middle)
+    {
+      *(ptmp + k) = a[i];
+      k++;
+      i++;
+    }
+  while(j <= end)
+    {
+      *(ptmp + k) = a[j];
+      k++;
+      j++;
+    }
+  
+  for(i = start;i <= end;i++)
+    {
+      a[i] = *(ptmp + i - start);
+    }
+  free(ptmp);
+}
+
+void MergeSort(int a[],int start,int end)
+{
+  if((end - start) <= 0)
+    {
+      return;
+    }
+  
+  int middle = (end + start)/2;
+  MergeSort(a,start,middle);
+  MergeSort(a,middle + 1,end);
+  mergeRows(a,start,middle,end);
+}

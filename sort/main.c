@@ -8,7 +8,7 @@ int main()
   int len = 15;
   
   printArray(arr,len);
-  QuickSort(arr,0,len - 1);
+  MergeSort(arr,0,len - 1);
   printArray(arr,len);
   return 0;
 }
