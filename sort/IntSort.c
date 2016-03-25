@@ -7,7 +7,7 @@
  *   BubbleSort
  *
  */
-
+#include <stdio.h>
 #include "prepareFun.h"
 
 void BubbleSort(int a[],int len)
@@ -68,7 +68,7 @@ void buildHeap(int a[],int i,int len)
     {
      	maxIndex = right;
     }
-  if(left < len && a[left] > a[maxIndex)
+  if(left < len && a[left] > a[maxIndex])
     {
     	maxIndex = left;
     }
@@ -95,5 +95,31 @@ void HeapSort(int a[],int len)
 }
 
 
+void QuickSort(int a[],int start,int end)
+{
+  int i = start,j = end;
+  int status = a[i];
 
+  if(i >= j)
+    {
+      return;
+    }
 
+  while(i < j)
+    {
+      while(i<j && a[j] >= status)
+	{
+	  j--;
+	}
+      a[i] = a[j];
+
+      while(i < j && a[i] <= status)
+	{
+	  i++;
+	}
+      a[j] = a[i];
+    }
+      a[i] = status;
+      QuickSort(a,start,i - 1);
+      QuickSort(a,i + 1,end);
+ }
