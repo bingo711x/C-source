@@ -75,7 +75,7 @@ void SelectSort(int a[],int len)
     }
 }
 
-//maintain a maxheap structure
+//maintain maxheap structure
 void buildHeap(int a[],int i,int len)
 {
   int left = 2*i+1,right = 2*i+2;
@@ -115,7 +115,6 @@ void HeapSort(int a[],int len)
       buildHeap(a,0,i);
     }
 }
-
 
 void QuickSort(int a[],int start,int end)
 {

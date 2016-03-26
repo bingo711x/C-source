@@ -1,0 +1,23 @@
+#include "OneDirList.h"
+
+int main()
+{
+  List list;
+  Node node;
+  bool isempty;
+  int i;
+
+  list = initList();
+  isempty = isNull(list);
+  printf("the list is %d",isempty);
+
+  for(i = 0;i < 100;i++)
+    {
+      Node = (Node)malloc(sizeof(NodeData));
+      Node -> element = i;
+      Node -> pnext = NULL;
+      ins(list,i,Node);
+    }
+  printList(list);
+  return 0;
+}

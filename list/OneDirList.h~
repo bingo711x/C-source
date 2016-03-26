@@ -1,0 +1,36 @@
+#ifndef ONE_DIR_LIST_H
+#define ONE_DIR_LIST_H
+
+#define dataType int
+
+typedef struct node *Node;
+typedef struct list *List;
+
+struct node
+{
+  dataType element;
+  List pnext;
+};
+
+struct list
+{
+  Node head;
+  int len;
+};
+
+//fuction for this
+List initList(void);
+void delList(List list);
+
+bool isNull(List list);
+void insNode(List list,int pos,Node node);
+void delNode(List list,int pos);
+Node findLast(List list);
+Node findValue(List list,int pos);
+int findIndex(List list,Node node);
+
+void printList(List list);
+void printNode(Node node);
+
+#endif
+

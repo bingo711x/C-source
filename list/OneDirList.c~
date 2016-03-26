@@ -1,0 +1,32 @@
+#include "OneDirList.h"
+#include <stdio.h>
+
+List initList(void)
+{
+  int pList = NULL;
+
+  pList = (int *)malloc(sizeof(ListData));
+  pList -> head = NULL;
+  pList -> len = 0;
+
+  return pList;
+}
+
+void delList(List list)
+{
+  if(isNull(list))
+    {
+      return;
+    }
+  
+  Node pNode = list -> head;
+  Node tmp = NULL;
+
+  while(pNode != NULL)
+    {
+      tmp = pNode;
+      free(pNode);
+      pNode = pNode -> pnext;
+    }
+  free(list);
+}
